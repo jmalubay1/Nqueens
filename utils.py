@@ -18,15 +18,16 @@ def get_state_fitness(state):
         return pairs
 
     n = np.size(state)
-    int_state = state.astype(int)     # because some of the functions turn queens into floats
+    if state.dtype != 'int':
+      state = state.astype(int)     # because some of the functions turn queens into floats
 
     # index masks for diagonals
-    diag_left = np.arange(n) - int_state
+    diag_left = np.arange(n) - state
     # print(diag_left)
-    diag_right = np.arange(n) + int_state
+    diag_right = np.arange(n) + state
     # print(diag_right)
 
-    return (count_pairs(int_state) + count_pairs(diag_left) + count_pairs(diag_right))
+    return (count_pairs(state) + count_pairs(diag_left) + count_pairs(diag_right))
 
 
 def generate_population(n, population_size):
@@ -42,3 +43,18 @@ def generate_population(n, population_size):
   
   rng = np.random.default_rng()
   return (rng.integers(n, size=(population_size, n)))
+
+
+def generate_permuted_population(n, population_size):
+  """generate random N_Queens states with no queens in the same row or column
+
+  Args:
+      n (int): number of Queens
+      population_size (int): number of states to generate
+
+  Returns:
+      np.array(population_size, n): 2D array, rows = states, col = queens in cols
+  """  
+  
+  rng = np.random.default_rng()
+  return rng.permuted((np.full((population_size, n), np.arange(n))), axis=1)

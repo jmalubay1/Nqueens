@@ -1,24 +1,34 @@
 import numpy as np
 import pyswarms as ps
 from pyswarms.utils.decorators import cost
-from utils import get_state_fitness
+from pyswarms.utils.search import GridSearch
+from utils import generate_permuted_population, get_state_fitness
 
-n = 8
+n = 12    # n must be at least 4
 
-min_bound = np.zeros(n)
-max_bound = (n) * np.ones(n)
-bounds = (min_bound, max_bound)
-center = np.full(n, n//2, dtype=int)
+swarm_size = 30
+
 
 if __name__ == '__main__' :
+
   # Set-up hyperparameters
-  options = {'c1': 2, 'c2': 2, 'w':0.9, 'k':n-1, 'p':1}
+  options = {'c1': [0.5,1, 2],
+             'c2': [0.3, 1, 2], 
+             'w': [0.2, 0.4, 0.9],
+             'k': [n//2, n-3, n-1], 
+             'p':[2]}
+
+  min_bound = np.zeros(n)
+  max_bound = (n) * np.ones(n)
+  bounds = (min_bound, max_bound)
+  center = np.full(n, n//2, dtype=int)
+
 
   # Call instance of PSO
-  optimizer = ps.single.LocalBestPSO(n_particles=100, dimensions=n, options=options,bounds=bounds)
 
-  # Perform optimization
-  cost, pos = optimizer.optimize(cost(get_state_fitness), iters=1000)
+  g = GridSearch(ps.single.LocalBestPSO, n_particles=swarm_size,dimensions=n, options=options, bounds=bounds, objective_func=cost(get_state_fitness), iters=100)
+  cost, cost_options = g.search()
+  print(f'{cost=}, {cost_options}')
 
-  # print(f'{cost=}, {pos=}')
-  print(f'{cost=}, {pos.astype(int)}')
+
+  print(f'{n//2=}, {n-3=}, {n-1=}')
