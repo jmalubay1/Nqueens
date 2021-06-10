@@ -29,6 +29,18 @@ def get_state_fitness(state):
 
     return (count_pairs(state) + count_pairs(diag_left) + count_pairs(diag_right))
 
+def population_fitness(population):
+  """return array of fitness for whole population
+
+  Args:
+      population (np.array[population_size, n]): np array of N-queens states
+
+  Returns:
+      np.array[population_size]: fitness for each population
+  """  
+
+  return np.asarray([get_state_fitness(state) for state in population])
+
 
 def generate_population(n, population_size):
   """generate random N_Queens states
