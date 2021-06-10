@@ -14,10 +14,9 @@ def cspQueens(n):
     start = t.default_timer()
 
     # Find and all constraints by passing in pairs of queens to be checked
-    # for conflicts.  The loop iteration is reversed to check the 'lowest' 
-    # Queens constraints first.
-    for Q1 in reversed(Queens):
-        for Q2 in reversed(Queens):
+    # for conflicts.
+    for Q1 in Queens:
+        for Q2 in Queens:
             # This if stament handles column constriants and prevents
             # double checking the same pair in the opposite order
             if Q1 < Q2:
