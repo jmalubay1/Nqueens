@@ -33,15 +33,15 @@ def cspQueens(n):
     #return len(solutions)
 
 if __name__ == "__main__":
-    n = 88
+    n = 113
 
-    yPlot = []
-    for i in range(1,n+1):
-        yPlot.append(cspQueens(i))
+    #yPlot = []
+    print(cspQueens(n))
+    #yPlot.append()
 
-    numPlot = plt.figure()
-    plt.xlabel("Number of Queens (n)")
-    plt.ylabel("Time to find first solution (seconds")
-    plt.title("Time for n-Queens")
-    plt.plot([i for i in range(1,n+1)],yPlot)
-    plt.show()
+    #numPlot = plt.figure()
+    #plt.xlabel("Number of Queens (n)")
+    #plt.ylabel("Time to find first solution (seconds")
+    #plt.title("Time for n-Queens")
+    #plt.plot([i for i in range(1,n+1)],yPlot)
+    #plt.show()
