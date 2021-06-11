@@ -171,11 +171,12 @@ if __name__ == "__main__":
                 main program
     ************************************************************"""
 
-    population_sizes = [10, 100, 500, 1000]
+    n_sizes = [8, 12, 40, 88]
+    population_sizes = [12, 18, 60, 132]
     fig = plot_setup()
 
-    for p_s in population_sizes:
-        average_fitness, end_state, start_state = ga_Nqueens(p_s, 12, 40, 0.001)
+    for p_s,n_s in zip(population_sizes,n_sizes):
+        average_fitness, end_state, start_state = ga_Nqueens(p_s, n_s, 40, 0.001)
         print(f'Population size: {p_s}')
         print(f'Average fitness: {average_fitness}')
         print(f'An initial state: \n{start_state}')
