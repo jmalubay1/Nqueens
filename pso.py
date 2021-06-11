@@ -4,9 +4,9 @@ from pyswarms.utils.decorators import cost
 from pyswarms.utils.search import GridSearch
 from utils import generate_permuted_population, get_state_fitness
 
-n = 12    # n must be at least 4
+n = 8    # n must be at least 4
 
-swarm_size = 30
+swarm_size = 20
 
 
 if __name__ == '__main__' :
