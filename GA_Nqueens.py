@@ -1,4 +1,5 @@
 import numpy as np
+import time
 import random
 from matplotlib import pyplot as plt
 from utils import get_state_fitness
@@ -173,14 +174,18 @@ if __name__ == "__main__":
 
     n_sizes = [8, 12, 40, 88]
     population_sizes = [12, 18, 60, 132]
+    iterations = [1000, 1000, 1000, 1000]
     fig = plot_setup()
 
-    for p_s,n_s in zip(population_sizes,n_sizes):
-        average_fitness, end_state, start_state = ga_Nqueens(p_s, n_s, 40, 0.001)
-        print(f'Population size: {p_s}')
-        print(f'Average fitness: {average_fitness}')
-        print(f'An initial state: \n{start_state}')
+    for p_s,n_s, iter in zip(population_sizes,n_sizes, iterations):
+        tic = time.perf_counter()
+        average_fitness, end_state, start_state = ga_Nqueens(p_s, n_s, iter, 0.001)
+        toc = time.perf_counter()
+        print(f'Population size: {p_s}, N: {n_s}')
+        print(f'Average fitness: {average_fitness[-1]}')
+        # print(f'An initial state: \n{start_state}')
         print(f'A final state: \n{end_state}')
+        print(f'time for optimization: {toc - tic:0.4f} seconds')
         add_plot(average_fitness, p_s)
 
     plot_save(fig)
