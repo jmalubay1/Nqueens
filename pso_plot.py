@@ -6,6 +6,7 @@ from pyswarms.utils.decorators import cost
 from pyswarms.utils.search import GridSearch
 from pyswarms.utils.plotters import(plot_cost_history)
 from utils import generate_permuted_population, get_state_fitness
+from sys import argv
 
 n = 88    # n must be at least 4
 
@@ -13,6 +14,12 @@ swarm_size = 132
 
 
 if __name__ == '__main__' :
+  if len(argv) > 1:
+    try:
+      n = int(argv[1])
+    except:
+      n = 88
+    swarm_size = 5 * n
 
   # Set-up hyperparameters
   options = {'c1': 0.5, 'c2': 0.3, 'w':0.9, 'k':n-1, 'p':2}
