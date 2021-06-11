@@ -20,10 +20,10 @@ def plot_setup():
     return fig
 
 
-def add_plot(fitness_over_time, population_size):
+def add_plot(fitness_over_time, n, population_size):
 
     plt.plot(np.arange(fitness_over_time.size),
-             fitness_over_time, label=f'pop = {population_size}')
+             fitness_over_time, label=f'n = {n}, pop = {population_size}')
 
 
 def plot_save(fig):
@@ -173,7 +173,7 @@ if __name__ == "__main__":
     ************************************************************"""
 
     n_sizes = [8, 12, 40, 88]
-    population_sizes = [12, 18, 60, 132]
+    population_sizes = [100, 100, 500, 500]
     iterations = [1000, 1000, 1000, 1000]
     fig = plot_setup()
 
@@ -186,6 +186,6 @@ if __name__ == "__main__":
         # print(f'An initial state: \n{start_state}')
         print(f'A final state: \n{end_state}')
         print(f'time for optimization: {toc - tic:0.4f} seconds')
-        add_plot(average_fitness, p_s)
+        add_plot(average_fitness, n_s, p_s)
 
     plot_save(fig)
