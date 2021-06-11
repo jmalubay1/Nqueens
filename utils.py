@@ -19,7 +19,8 @@ def get_state_fitness(state):
 
     n = np.size(state)
     if state.dtype != 'int':
-      state = state.astype(int)     # because some of the functions turn queens into floats
+      # state = state.astype(int)     # because some of the functions turn queens into floats
+      state = np.rint(state)     # because some of the functions turn queens into floats
 
     # index masks for diagonals
     diag_left = np.arange(n) - state
@@ -68,5 +69,6 @@ def generate_permuted_population(n, population_size):
       np.array(population_size, n): 2D array, rows = states, col = queens in cols
   """  
   
+  print(f'{population_size=}, {n=}')
   rng = np.random.default_rng()
   return rng.permuted((np.full((population_size, n), np.arange(n))), axis=1)
