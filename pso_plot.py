@@ -19,7 +19,7 @@ if __name__ == '__main__' :
       n = int(argv[1])
     except:
       n = 88
-    swarm_size = 1.5 * n
+    swarm_size = int(np.ceil(1.5 * n))
 
   # Set-up hyperparameters
   options = {'c1': 0.5, 'c2': 0.3, 'w':0.9, 'k':n-1, 'p':2}
