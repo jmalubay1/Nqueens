@@ -1,6 +1,6 @@
+import time
 import numpy as np
 import matplotlib.pyplot as plt
-import time
 import pyswarms as ps
 from pyswarms.utils.decorators import cost
 from pyswarms.utils.search import GridSearch
